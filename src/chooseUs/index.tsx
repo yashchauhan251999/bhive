@@ -50,7 +50,7 @@ export function ChooseUs() {
     const total = data.length;
 
     return <section
-        className="bg-gray-50 sm:px-[10%] px-6 flex flex-col space-y-4 py-20"
+        className="bg-gray-50 sm:px-[10%] px-6 flex flex-col space-y-4 pb-10 pt-10"
     >
         <div className="flex justify-between items-center pb-10">
             <span className="text-4xl font-semibold">

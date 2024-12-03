@@ -53,7 +53,7 @@ export function OurSpaces() {
 
     return <section
         id="spaces"
-        className="bg-gray-50 sm:px-[10%] px-6 flex flex-col space-y-6 py-20"
+        className="bg-gray-50 sm:px-[10%] px-6 flex flex-col space-y-6 pb-10 pt-10"
     >
         <div className="flex justify-between pb-10">
             <p className="text-4xl font-semibold">

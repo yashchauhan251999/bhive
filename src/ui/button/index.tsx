@@ -30,7 +30,7 @@ export function Button({ space, variant }: { space: iSpace, variant: 'day' | 'bu
             }
 
             <div className="flex flex-col space-y-1 items-start">
-                <p className="text-text-pass sm:text-lg text-sm">Day Pass</p>
+                <p className="text-text-pass sm:text-lg text-sm">{variant === 'day' ? 'Day' : 'Bulk'} Pass</p>
                 <p> ₹
                     {
                         variant === 'day' ?
