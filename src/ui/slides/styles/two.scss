@@ -1,0 +1,210 @@
+@import './utils/index.scss';
+
+$small: 580px;
+
+.animation-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+
+    @keyframes headingAnimation {
+        0% {
+            opacity: 0;
+            transform: translate(0, -4rem);
+            height: 2rem;
+        }
+        100% {
+            opacity: 1;
+            height: 4rem;
+            transform: translate(0, 0);
+        }
+    }
+
+    .heading {
+        visibility: hidden;
+        transition: height 2s ease-in-out;
+        &.show {
+            visibility: visible;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            height: 4rem;
+            animation: 1s ease-in-out 0s 1 headingAnimation;
+        }
+    }
+
+    .image-stack {
+        width: 100%;
+        position: relative;
+        padding: 0 1rem;
+        height: 70%;
+        
+        .img-array {
+            height: 100%;
+            // border: 2px solid black;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .three,
+            .two,
+            .one {
+                border-radius: 0.5rem;
+                width: 23rem;
+                height: 14.25rem;
+                
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                .badge, .half-blur, .footer {
+                    visibility: hidden;
+                }
+                @media screen and (max-width: $small) {
+                    width: 15.6rem;
+                    height: 21.5rem;
+                }
+            }
+
+            .one {
+                z-index: 5;
+                top: 0;
+                position: absolute;
+                transform: translate(1.5rem, -.5rem);
+                @include stackAnimation('one', 1.5rem, -0.5rem);
+            }
+
+            .two {
+                position: absolute;
+                top: 0;
+                z-index: 4;
+                transform: translate(0rem, 1rem);
+                @include stackAnimation('two', 0, 1rem);
+            }
+
+            .three {
+                transform: translate(-1.5rem, 2.5rem);
+                @include stackAnimation('cloud', -1.5rem, 2.5rem);
+            }
+        }
+        
+        &.vertical {
+            display: block;
+            .img-array {
+                    max-height: 20rem;
+
+                .three, .two, .one {
+                    width: 31%;
+                    height: 100%;
+                    @media screen and (max-width: $small) {
+                        width: 100%;
+                        height: 10rem;
+                    }
+                    .badge, .half-blur, .footer {
+                        visibility: visible;
+                        @include stackContentsAnimation;
+                    }
+                    .badge {
+                        position: absolute;
+                        top: 6px;
+                        left: 6px;
+                        background: white;
+                        border-radius: 4px;
+                        padding: 3px 5px;
+                        font-size: 11px;
+                        color: #0066C6;
+                        font-weight: 700;
+                        z-index: 1000;
+                    }
+                    .footer {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 50%;
+                        width: 100%;
+                        text-align: left;
+                        padding-left: 0.5rem;
+                        padding-bottom: 0.5rem;
+                        color: white;
+                        font-weight: 700;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: end;
+                        h2 {
+                            font-size: 1.2rem;
+                        }
+                        p {
+                            font-size: 0.8rem;
+                        }
+                    }
+                    .half-blur {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 50%;
+                        width: 100%;
+                        mask: linear-gradient(transparent, black, black);
+                        backdrop-filter: blur(4px);
+                    }
+                }
+                .one {
+                    transform: translate(-108%,4rem);
+                    @media screen and (max-width: $small) {
+                        margin: 1rem 0;
+                        transform: translate(0,0);
+                    }
+                    @include one-animation;
+                }
+                .two {
+                    top: 4rem;
+                    transform: translate(0%,0);
+                    @media screen and (max-width: $small) {
+                        top: 10.5rem;
+                        margin: 1.5rem 0;
+                        transform: translate(0,0);
+                    }
+                    @include two-animation;
+                }
+                .three {
+                    transform: translate(108%,4rem);
+                    @media screen and (max-width: $small) {
+                        transform: translate(0,23rem);
+                    }
+                    @include three-animation;
+                }
+            }
+        }
+    }
+    
+    .bottom-rounded {
+        background: white;
+        margin-top: auto;
+        width: 100%;
+        height: 40%;
+        // @media screen and (max-width: $small) {
+        // }
+        text-align: center;
+        padding-top: 2.5rem;
+        border-color: white transparent transparent transparent;
+        border-radius: 70%/8rem 8rem 0 0;
+        position: relative;
+        @media screen and (max-width: $small) {
+            border-radius: 200%/12.5rem 12.5rem 0 0;
+            height: 32%;
+
+        }
+        @include bottomCurveAnimation;
+        .navigation {
+            position: absolute;
+            bottom: 2rem;
+        }
+        .text {
+            @include bottomCurveTextAnimation;
+        }
+        &.hide {
+            display: none;
+        }
+    }
+}
